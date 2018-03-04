@@ -1,0 +1,57 @@
+<template>
+  <b-navbar toggleable="md" type="dark" variant="dark">
+    <b-navbar-brand to="/">Mikan</b-navbar-brand>
+    <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+    <b-collapse is-nav id="nav_collapse">
+      <b-navbar-nav>
+        <b-nav-item to="/">Hoome</b-nav-item>
+        <b-nav-item to="/poyopoyo">poyopoyo</b-nav-item>
+      </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item active to="/profile"
+                           class="member-profile-img mx-2"
+                           :style="profileImgStyle" />
+        <b-nav-item-dropdown :text="username" right>
+          <b-dropdown-item to="/profile">Profile</b-dropdown-item>
+          <b-dropdown-item @click="logout" to="/login">Logout</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+</template>
+
+<script>
+import * as api from '~/utils/mikan-api'
+import { mapState, mapMutations, mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState('account', ['username']),
+    ...mapGetters({
+      profileImgUrl: 'account/profileImgUrl'
+    }),
+    profileImgStyle () {
+      return {
+        backgroundImage: `url(${this.profileImgUrl})`,
+        backgroundSize: `2.5rem`,
+        height: '2.5rem',
+        width: '2.5rem',
+        borderRadius: '50%'
+      }
+    }
+  },
+  methods: {
+    async logout () {
+      await this.$store.dispatch('logout')
+      this.$router.push('/login')
+    }
+  },
+}
+</script>
+
+<style scoped lang="scss">
+.member-profile-img > a {
+  height: 100%;
+  width: 100%;
+}
+</style>
