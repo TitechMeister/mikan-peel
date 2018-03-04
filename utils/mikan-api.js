@@ -1,7 +1,6 @@
 'use strict'
 
 import * as axiosBase from 'axios'
-require('dotenv').config();
 
 export const baseURL = process.env.API_ENTRY_POINT || "http://localhost:8000"
 

@@ -1,4 +1,5 @@
 import * as api from '../utils/mikan-api.js'
+import Cookies from 'js-cookie';
 
 export const state = () => ({
   authed: false,
@@ -32,6 +33,7 @@ export const actions = {
 
   async updateToken ({ commit, dispatch }, { token }) {
     localStorage.mikanApiToken = token
+    Cookies.set('mikan_token', token, { domain: `${document.domain}`, secure: true })
     commit('setToken', {token})
     await dispatch('fetch')
   },

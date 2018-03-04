@@ -64,7 +64,7 @@ export default {
       // this.$nextTick(() => { this.show = true })
     },
   },
-  middleware: 'checkLogin',
+  middleware: 'noAuth',
   layout: 'login'
 }
 </script>
