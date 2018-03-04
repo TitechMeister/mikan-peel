@@ -2,7 +2,7 @@
 
 import * as axiosBase from 'axios'
 
-export const baseURL = process.env.API_ENTRY_POINT || "http://localhost:8000"
+export const baseURL = process.env.API_ENTRYPOINT || "http://localhost:8000"
 
 const axios = axiosBase.create({
   baseURL: baseURL,
