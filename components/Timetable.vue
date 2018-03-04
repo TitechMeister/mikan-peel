@@ -99,7 +99,8 @@ export default {
     #po {
       width: 1000px;
       height: 100%;
-      background: linear-gradient(to right, red, blue);
+      background: linear-gradient(to right, white, white 96%, lightgray);
+      background-size: 25px;
     }
   }
 }
