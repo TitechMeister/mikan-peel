@@ -7,7 +7,6 @@
     <b-form
       id="form"
       @submit="onSubmit"
-      @reset="onReset"
       v-if="show">
       <b-form-group
         id="fieldset1"
@@ -36,9 +35,11 @@
 
 <script>
 import * as api from '../utils/mikan-api'
+import Cookies from 'js-cookie';
 
 export default {
   computed: { },
+  watchQuery: ['redirect'],
   data () {
     return {
       form: {
@@ -52,16 +53,13 @@ export default {
     async onSubmit (evt) {
       evt.preventDefault()
       await this.$store.dispatch("fetchToken", this.form)
+      if (Cookies.get('redirect')) {
+        const redirect = Cookies.get('redirect')
+        location.href = redirect;
+        return
+      }
       await this.$store.dispatch("fetch")
       this.$router.push('/')
-    },
-    onReset (evt) {
-      evt.preventDefault()
-      /* Reset our form values */
-      this.form.user = ''
-      this.form.password = ''
-      // this.form.show = false
-      // this.$nextTick(() => { this.show = true })
     },
   },
   middleware: 'noAuth',
