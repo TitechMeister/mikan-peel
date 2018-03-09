@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <div id="logo">
-      <img src="/mikan.png" />
+      <img src="/Mikan-logo-white.png" />
     </div>
     <h1>Mikan</h1>
     <b-form
@@ -9,7 +9,7 @@
       @submit="onSubmit"
       v-if="show">
       <b-form-group
-        id="fieldset1"
+        id="field-username"
         label="Username"
         label-for="input1">
         <b-form-input
@@ -17,7 +17,7 @@
           v-model.trim="form.username" />
       </b-form-group>
       <b-form-group
-        id="fieldset2"
+        id="user-password"
         label="Password"
         label-for="input2">
         <b-form-input
@@ -25,21 +25,26 @@
           type="password"
           v-model.trim="form.password" />
       </b-form-group>
-      <button
-        type="submit"
-        variant="primary"
-        class="login-button--mikan">Login</button>
+      <ButtonOutlineMikan
+        id="register-link"
+        type="submit">Login</ButtonOutlineMikan>
     </b-form>
+    <router-link
+      id="register-link"
+      to="register">Register</router-link>
   </div>
 </template>
 
 <script>
 import * as api from '../utils/mikan-api'
 import Cookies from 'js-cookie';
+import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
 
 export default {
+  components: {
+    ButtonOutlineMikan
+  },
   computed: { },
-  watchQuery: ['redirect'],
   data () {
     return {
       form: {
@@ -94,21 +99,11 @@ export default {
     color: white;
   }
 
+  #register-link {
+    color: white;
+    margin: 20px;
+  }
+
 }
 
-.login-button--mikan {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid white;
-  background-color: #f08300;
-  color: white;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.login-button--mikan:hover {
-  border: 1px solid #f08300;
-  background-color: white;
-  color: #f08300;
-}
 </style>
