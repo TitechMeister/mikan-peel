@@ -34,6 +34,21 @@ export const post = (apiPath, data, option = null) => {
   return axios.post(normalizeApiPath(apiPath), data, option)
 }
 
+export const getWithoutDefaultHeader = (apiPath, option = null) => {
+  const headers = axios.defaults.headers
+  axios.defaults.headers = {}
+  const promise = axios.get(normalizeApiPath(apiPath), option)
+  axios.defaults.headers = headers
+  return promise
+}
+export const postWithoutDefaultHeader = (apiPath, data, option = null) => {
+  const headers = axios.defaults.headers
+  axios.defaults.headers = {}
+  const promise = axios.post(normalizeApiPath(apiPath), data, option)
+  axios.defaults.headers = headers
+  return promise
+}
+
 export const patch = (apiPath, data, option = null) => {
   return axios.patch(normalizeApiPath(apiPath), data, option)
 }

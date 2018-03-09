@@ -1,0 +1,19 @@
+// mixins for ui component
+
+
+@mixin outline-button($color:#3f3f3f) {
+  transition: all 0.2s;
+  display: inline-block;
+  background-color: $color ;
+  border-radius: 4px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  padding: 10px 30px;
+}
+
+@mixin outline-button-hover($color:#3f3f3f) {
+  border: 1px solid $color;
+  background-color: white;
+  color: $color !important;
+}
