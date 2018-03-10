@@ -87,6 +87,6 @@ export const actions = {
 }
 
 export const getters = {
-  profileImgUrl: state => state.profile_image ? api.baseURL + state.profile_image : '',
+  profileImgUrl: state => state.profile_image ? state.profile_image : '',
   fullname: state => `${state.first_name} ${state.last_name}`
 }
