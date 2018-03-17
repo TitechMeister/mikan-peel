@@ -7,3 +7,10 @@ body {
   color: #2c3e50;
 }
 
+.page-enter-active, .page-leave-to {
+  transition: opacity .3s;
+}
+.page-enter, .page-leave-active {
+  transition: opacity .3s;
+  opacity: 0;
+}

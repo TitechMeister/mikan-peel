@@ -1,9 +1,6 @@
 <template>
   <div id="register">
-    <div class="logo-container">
-      <img src="/Mikan-logo-white.png" />
-      <h1>Mikan</h1>
-    </div>
+    <LogoMedium></LogoMedium>
     <h2>Recover password</h2>
     <b-form
       id="form"
@@ -34,7 +31,11 @@
                class="registration-message"
                v-if="recoverSuccess">
             Email was sent. Please follow steps on the mail.<br/>
-            Redirect to login page in 5s...
+          </div>
+          <div id="registration-message-process"
+               class="registration-message"
+               v-if="recoverProcess">
+            Requesting password renewal...<br/>
           </div>
           <div id="registration-message-error"
                class="registration-message"
@@ -51,10 +52,12 @@
 import * as api from '~/utils/mikan-api'
 import Cookies from 'js-cookie';
 import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
+import LogoMedium from '~/components/LogoMedium'
 
 export default {
   components: {
-    ButtonOutlineMikan
+    ButtonOutlineMikan,
+    LogoMedium
   },
   data () {
     return {
@@ -118,20 +121,6 @@ export default {
   color: white;
   overflow: scroll;
 
-  .logo-container {
-    margin-bottom: 20px;
-    display: flex;
-    img {
-      justify-content: center;
-      height: 4rem;
-      width: auto;
-      margin-right: 20px;
-    }
-    h1 {
-      font-size: 3.5rem;
-      font-family: 'Quicksand', 'Avenir', Helvetica, Arial, sans-serif;
-    }
-  }
   h2 {
     font-size: 1.5rem;
     font-weight: 300;

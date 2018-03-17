@@ -1,9 +1,6 @@
 <template>
   <div id="register">
-    <div class="logo-container">
-      <img src="/Mikan-logo-white.png" />
-      <h1>Mikan</h1>
-    </div>
+    <LogoMedium></LogoMedium>
     <div v-if="show">
       <h2 v-if="form.token">Enter new password</h2>
       <h2 v-else>{{ invalidTokenMessage }}</h2>
@@ -48,7 +45,6 @@
                class="registration-message"
                v-if="recoverSuccess">
             Successfully renewed password.<br/>
-            Redirect to login page in 5s...
           </div>
           <div id="registration-message-process"
                class="registration-message"
@@ -70,10 +66,12 @@
 import * as api from '~/utils/mikan-api'
 import Cookies from 'js-cookie';
 import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
+import LogoMedium from '~/components/LogoMedium'
 
 export default {
   components: {
-    ButtonOutlineMikan
+    ButtonOutlineMikan,
+    LogoMedium
   },
   data () {
     return {
@@ -156,6 +154,7 @@ export default {
       await api.postWithoutDefaultHeader("/recover/verify/", {token})
       this.form.token = token
     } catch (e) {
+      if (!e.response) this.$router.push('/login')
       this.form.token = null
       this.invalidTokenMessage = e.response.data.token.join()
     }
@@ -172,20 +171,6 @@ export default {
   color: white;
   overflow: scroll;
 
-  .logo-container {
-    margin-bottom: 20px;
-    display: flex;
-    img {
-      justify-content: center;
-      height: 4rem;
-      width: auto;
-      margin-right: 20px;
-    }
-    h1 {
-      font-size: 3.5rem;
-      font-family: 'Quicksand', 'Avenir', Helvetica, Arial, sans-serif;
-    }
-  }
   h2, h3 {
     font-size: 1.5rem;
     font-weight: 300;

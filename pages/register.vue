@@ -1,9 +1,6 @@
 <template>
   <div id="register">
-    <div class="logo-container">
-      <img src="/Mikan-logo-white.png" />
-      <h1>Mikan</h1>
-    </div>
+    <LogoMedium></LogoMedium>
     <b-form
       id="form"
       @submit="onSubmit"
@@ -214,10 +211,12 @@
 import * as api from '~/utils/mikan-api'
 import Cookies from 'js-cookie';
 import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
+import LogoMedium from '~/components/LogoMedium'
 
 export default {
   components: {
-    ButtonOutlineMikan
+    ButtonOutlineMikan,
+    LogoMedium
   },
   data () {
     return {
@@ -245,7 +244,7 @@ export default {
         ja_first_name: null,
         executive_generation: null,
         team: null,
-        profile_image: null,
+        profile_image: "Image will be cropped from center to be square.",
         registration_code: null,
       },
       teamsList: [],
@@ -310,14 +309,14 @@ export default {
       evt.preventDefault()
       this.registrationSuccess = false
       this.registrationError = false
-      try {
-        const formData = new FormData()
-        for (let key in this.form) {
-          if (key !== "profile_image" || this.form.profile_image){
-            formData.append(key, this.form[key])
-          }
+      const formData = new FormData()
+      for (let key in this.form) {
+        if (key !== "profile_image" || this.form.profile_image){
+          formData.append(key, this.form[key])
         }
-        const options = {headers: {'Content-Type': 'multipart/form-data'}}
+      }
+      const options = {headers: {'Content-Type': 'multipart/form-data'}}
+      try {
         await api.postWithoutDefaultHeader("/register/", formData, options)
       } catch (e) {
         console.log(e)
@@ -357,19 +356,6 @@ export default {
   color: white;
   overflow: scroll;
 
-  .logo-container {
-    display: flex;
-    img {
-      justify-content: center;
-      height: 4rem;
-      width: auto;
-      margin-right: 20px;
-    }
-    h1 {
-      font-size: 3.5rem;
-      font-family: 'Quicksand', 'Avenir', Helvetica, Arial, sans-serif;
-    }
-  }
   .b-form-group {
     margin: 15px 5px;
   }

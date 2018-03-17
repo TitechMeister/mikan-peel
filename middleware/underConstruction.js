@@ -1,6 +1,6 @@
 export default async function ({ isDev, redirect }) {
   if (!isDev) {
-    redirect('/error/building')
+    redirect('/error/working')
     return
   }
 }

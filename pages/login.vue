@@ -1,9 +1,6 @@
 <template>
   <div id="login">
-    <div id="logo">
-      <img src="/Mikan-logo-white.png" />
-    </div>
-    <h1>Mikan</h1>
+    <LogoBig></LogoBig>
     <b-form
       id="form"
       @submit="onSubmit"
@@ -26,12 +23,17 @@
           v-model.trim="form.password" />
       </b-form-group>
       <ButtonOutlineMikan
-        id="register-link"
+        id="login-button"
         type="submit">Login</ButtonOutlineMikan>
     </b-form>
-    <router-link
-      id="register-link"
-      to="register">Register</router-link>
+    <div id="link-wrapper">
+      <router-link
+        id="register-link"
+        to="register">Register</router-link>
+      <router-link
+        id="recover-link"
+        to="recover">Forgot password?</router-link>
+    </div>
   </div>
 </template>
 
@@ -39,10 +41,12 @@
 import * as api from '../utils/mikan-api'
 import Cookies from 'js-cookie';
 import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
+import LogoBig from '~/components/LogoBig'
 
 export default {
   components: {
-    ButtonOutlineMikan
+    ButtonOutlineMikan,
+    LogoBig
   },
   computed: { },
   data () {
@@ -67,7 +71,7 @@ export default {
       this.$router.push('/')
     },
   },
-  middleware: 'noAuth',
+  middleware: ['noAuth'],
   layout: 'login'
 }
 </script>
@@ -78,30 +82,24 @@ export default {
   text-align: center;
   color: white;
 
-  #logo {
-    height: 200px;
-    text-align: center;
-    img {
-      height: 100%;
-      width: auto;
-    }
-  }
-
-  h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-family: 'Quicksand', 'Avenir', Helvetica, Arial, sans-serif;
-  }
-
   input, textarea {
     background-color: #f08300;
     border: 1px solid white;
     color: white;
   }
 
-  #register-link {
+  #login-button {
     color: white;
     margin: 20px;
+  }
+
+  #link-wrapper {
+    display: flex;
+    flex-direction: column;
+    * {
+      margin: 5px;
+      color: white;
+    }
   }
 
 }

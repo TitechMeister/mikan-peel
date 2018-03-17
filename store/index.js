@@ -4,12 +4,16 @@ import Cookies from 'js-cookie';
 export const state = () => ({
   authed: false,
   token: "",
+  query: {},
 })
 
 export const mutations = {
   setToken (state, { token }) {
     state.token = token
     api.setAuthToken(token)
+  },
+  setQuery (state, { query }) {
+    state.query = query
   },
   authenticate (state) { state.authed = true },
   unauthenticate (state) { state.authed = false },

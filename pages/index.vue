@@ -43,7 +43,7 @@ export default {
     Timecard,
     Timetable,
   },
-  middleware: 'auth'
+  middleware: ['underConstruction', 'auth']
 }
 </script>
 
