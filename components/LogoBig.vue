@@ -14,6 +14,7 @@
 
   #logo {
     height: 200px;
+    max-height: 30vh;
     text-align: center;
     img {
       height: 100%;

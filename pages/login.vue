@@ -26,6 +26,12 @@
         id="login-button"
         type="submit">Login</ButtonOutlineMikan>
     </b-form>
+    <transition name="fade">
+    <div id="login-error-message"
+         v-if="loginError">
+      Login failed.
+    </div>
+    </transition>
     <div id="link-wrapper">
       <router-link
         id="register-link"
@@ -55,13 +61,21 @@ export default {
         username: '',
         password: ''
       },
+      loginError: false,
       show: true
     }
   },
   methods: {
     async onSubmit (evt) {
       evt.preventDefault()
-      await this.$store.dispatch("fetchToken", this.form)
+      try {
+        await this.$store.dispatch("fetchToken", this.form)
+      }
+      catch (e) {
+        this.loginError = true
+        return
+      }
+      this.loginError = false
       if (Cookies.get('redirect')) {
         const redirect = Cookies.get('redirect')
         location.href = redirect;
@@ -102,6 +116,15 @@ export default {
     }
   }
 
+  #login-error-message {
+    margin-bottom: 20px;
+  }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>

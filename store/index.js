@@ -43,13 +43,8 @@ export const actions = {
   },
 
   async fetchToken ({ commit, dispatch }, { username, password }) {
-    try {
-      const token = await api.saveAuthToken(username, password)
-      dispatch('updateToken', {token})
-    }
-    catch (e) {
-      console.log(e)
-    }
+    const token = await api.saveAuthToken(username, password)
+    dispatch('updateToken', {token})
   },
 }
 

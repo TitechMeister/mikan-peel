@@ -319,7 +319,6 @@ export default {
       try {
         await api.postWithoutDefaultHeader("/register/", formData, options)
       } catch (e) {
-        console.log(e)
         if (!e.response) return
         for (let key in this.status_message) {
           this.status_message[key] = null

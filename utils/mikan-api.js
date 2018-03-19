@@ -68,8 +68,5 @@ export const saveAuthToken = (username, password) => {
       return token
     }
   })
-  .catch(response => {
-    console.log(response)
-  })
 }
 

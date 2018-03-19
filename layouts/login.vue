@@ -15,7 +15,10 @@ export default { }
 }
 
 #login-container {
+  position: fixed;
+  overflow-y: scroll;
   width: 100vw;
+  max-height: 100%;
   height: 100vh;
   background-color: #f08300;
   display: flex;
