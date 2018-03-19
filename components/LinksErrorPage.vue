@@ -11,7 +11,6 @@
 export default {
   computed : {
     links () {
-      console.log(process.env.ERROR_LINKS)
       return JSON.parse(process.env.ERROR_LINKS)
     }
   }
@@ -23,9 +22,11 @@ export default {
   text-align: center;
   flex-direction: row;
 
-  a {
-    margin: 20px;
-    color: white;
+  div {
+    margin: 10px;
+    a {
+      color: white;
+    }
   }
 }
 </style>
