@@ -4,6 +4,9 @@
          :key="key">
       <a :href="links[key]">{{ key }}</a>
     </div>
+    <div id="logout-link-wrapper">
+      <router-link to="/logout">Logout</router-link>
+    </div>
   </div>
 </template>
 
@@ -21,12 +24,14 @@ export default {
 #error-link-wrapper {
   text-align: center;
   flex-direction: row;
-
   div {
     margin: 10px;
     a {
       color: white;
     }
+  }
+  #logout-link-wrapper {
+    margin-top: 20px;
   }
 }
 </style>
