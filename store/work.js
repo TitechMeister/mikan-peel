@@ -41,7 +41,7 @@ export const actions = {
       return
     }
     try{
-      const unclassifiedWork = (await api.get('/work', {params: {in_progress: true}})).data
+      const unclassifiedWork = (await api.get('/activities', {params: {in_progress: true}})).data
 
       // initialize new map
       const newWorkInProgress = {}

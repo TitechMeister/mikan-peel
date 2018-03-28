@@ -19,16 +19,37 @@ const compareStartTime = (a, b) => moment(a.start_at).diff(b.start_at)
 const checkTimeRangesOverlap = (a, b) => moment(a.end_at).isAfter(b.start_at)
 
 const divideToNotDuplicated = (entries, sortCompareFunc, dupilicationCheckFunc) => {
+  // Arguments:
+  //   entries: {
+  //     a: [obja1, obja2, obja3, ...],
+  //     b: [objb1, objb3, objb2, ...]
+  //   }
+  //
+  //   sortCompareFunc(obja1, obja2) < 0
+  //                  (obja2, obja3) < 0
+  //                  (objb1, objb2) < 0
+  //                  (objb2, objb3) < 0
+  //
+  //   duplicationCheckFunc(obja1, obja2) = true
+  //                       (objb1, objb2) = true
+  //                       (objb1, objb3) = true
+  // Returns:
+  //   {
+  //     a: [[obja1, obja3, ...], [obja2, ...], ...],
+  //     b: [[objb1, ...], [objb2, objb3, ...], ...]
+  //   }
   const sorted = entries.slice().sort(sortCompareFunc)
   const result = [[]]             // inner empty array: sentinel
   for (let entry of sorted) {
     for (let resultEntries of result) {
       if (resultEntries.length === 0) {
+        // Duplicate with every element which has checked
         resultEntries.push(entry)
         result.push([])           // push new sentinel
         break
       }
       if (!dupilicationCheckFunc(resultEntries[resultEntries.length-1], entry)) {
+        // Found non-duplicate element
         resultEntries.push(entry)
         break
       }
@@ -72,6 +93,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .timetable {
   display: flex;
   max-width: 800px;
@@ -86,7 +108,7 @@ export default {
   .places {
     width: 200px;
     height: 100%;
-    background-color: #2c3e50;
+    // background-color: #2c3e50;
   }
 
   .entries {
