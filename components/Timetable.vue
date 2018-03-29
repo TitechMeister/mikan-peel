@@ -90,15 +90,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/styles/ui.scss";
 
 .timetable {
+  @include card;
   display: flex;
   max-width: 800px;
   height: 300px;
-  margin: 20px;
-  border-radius: 0.25rem;
-  border-style: solid;
-  border-width: 1px;
   font-weight: bold;
   overflow: hidden;
 

@@ -40,11 +40,16 @@ export default {
 .list-workplace{
   overflow-scrolling: touch;
   scroll-behavior: smooth;
-  margin: 20px 0px;
   display: flex;
   overflow-x: scroll;
-  div {
+
+  div:first-child {
+    margin-left: 0px;
+  }
+
+  > div {
     flex-shrink: 0;
+    margin: 0px 10px;
   }
 }
 </style>

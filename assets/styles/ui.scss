@@ -1,5 +1,10 @@
 // mixins for ui component
 
+@mixin card() {
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 1px;
+}
 
 @mixin outline-button($color:#3f3f3f) {
   transition: all 0.2s;

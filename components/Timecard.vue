@@ -190,11 +190,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/styles/ui.scss";
+
 .timecard {
+  @include card;
   transition: all 0.3s ease;
   max-width: 500px;
   height: auto;
-  margin: 20px;
 }
 
 .timecard-grid {
@@ -202,9 +204,6 @@ export default {
   height: 100%;
   width: 100%;
   padding: 10px 15px 10px 15px;
-  border-radius: 0.25rem;
-  border-style: solid;
-  border-width: 1px;
   grid-template:
       "date       .          details"    1.5rem
       "date       .          memberstatus" calc(70px - 1.5rem)

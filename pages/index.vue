@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="wrapper">
     <ListWorkplace/>
     <Timecard/>
     <Timetable :entriesMap="entriesMap"></Timetable>
@@ -47,5 +47,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+#wrapper > * {
+  margin: 20px;
+}
 </style>
