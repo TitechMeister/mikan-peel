@@ -21,7 +21,7 @@ const checkTimeRangesOverlap = (a, b) => moment(a.end_at).isAfter(b.start_at)
 const divideToNotDuplicated = (entries, sortCompareFunc, dupilicationCheckFunc) => {
   // Arguments:
   //   entries: [
-  //     obja1, obja3, obja2, ...
+  //     obja3, obja1, obja2, ...
   //   ]
   //
   //   sortCompareFunc(obja1, obja2) < 0
