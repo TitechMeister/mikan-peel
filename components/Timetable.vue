@@ -20,24 +20,21 @@ const checkTimeRangesOverlap = (a, b) => moment(a.end_at).isAfter(b.start_at)
 
 const divideToNotDuplicated = (entries, sortCompareFunc, dupilicationCheckFunc) => {
   // Arguments:
-  //   entries: {
-  //     a: [obja1, obja2, obja3, ...],
-  //     b: [objb1, objb3, objb2, ...]
-  //   }
+  //   entries: [
+  //     obja1, obja3, obja2, ...
+  //   ]
   //
   //   sortCompareFunc(obja1, obja2) < 0
   //                  (obja2, obja3) < 0
-  //                  (objb1, objb2) < 0
-  //                  (objb2, objb3) < 0
   //
   //   duplicationCheckFunc(obja1, obja2) = true
-  //                       (objb1, objb2) = true
-  //                       (objb1, objb3) = true
+  //
   // Returns:
-  //   {
-  //     a: [[obja1, obja3, ...], [obja2, ...], ...],
-  //     b: [[objb1, ...], [objb2, objb3, ...], ...]
-  //   }
+  //   [
+  //     [obja1, obja3, ...],
+  //     [obja2, ...],
+  //     ...
+  //   ]
   const sorted = entries.slice().sort(sortCompareFunc)
   const result = [[]]             // inner empty array: sentinel
   for (let entry of sorted) {
