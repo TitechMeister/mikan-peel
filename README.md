@@ -25,3 +25,5 @@ For detailed explanation on how things work, checkout the [Nuxt.js docs](https:/
 Set environment variables below in `.env`.
 - `API_ENTRY_POINT`
     - An entory point for API. Default is `http://localhost:8000`.
+- `ERROR_LINKS`
+    - Links which is shown in error page.

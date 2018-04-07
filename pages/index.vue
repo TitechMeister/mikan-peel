@@ -1,7 +1,10 @@
 <template>
   <section id="wrapper">
-    <ListWorkplace/>
     <Timecard/>
+    <Calendar :rawStart="rawStart"
+              :rawEnd="rawEnd"
+              :entriesMap="entriesMap"></Calendar>
+    <ListWorkplace/>
     <Timetable :entriesMap="entriesMap"></Timetable>
   </section>
 </template>
@@ -10,10 +13,13 @@
 import ListWorkplace from '~/components/ListWorkplace'
 import Timecard from '~/components/Timecard'
 import Timetable from '~/components/Timetable'
+import Calendar from '~/components/Calendar'
 
 export default {
   data () {
     return {
+      rawStart: "2018-08-16",
+      rawEnd: "2018-09-16",
       entriesMap: {
         po: [
           {
@@ -42,6 +48,7 @@ export default {
     ListWorkplace,
     Timecard,
     Timetable,
+    Calendar,
   },
   middleware: ['auth', 'underConstruction']
 }
