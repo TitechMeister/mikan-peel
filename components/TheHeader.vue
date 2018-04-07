@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="md" type="dark" variant="dark">
+  <b-navbar toggleable="md" type="dark">
     <b-navbar-brand to="/">Mikan</b-navbar-brand>
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
     <b-collapse is-nav id="nav_collapse">
@@ -49,6 +49,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/styles/colors.scss";
+@import "../assets/styles/ui.scss";
+
+.navbar {
+  @include shallow-shadow;
+  background-color: $mikan;
+}
+
 .member-profile-img > a {
   height: 100%;
   width: 100%;
