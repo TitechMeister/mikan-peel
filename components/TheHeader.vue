@@ -13,7 +13,7 @@
         <b-nav-item-dropdown :text="username" right>
           <b-dropdown-item disabled to="/profile">Profile</b-dropdown-item>
           <!-- <b-dropdown-item to="/profile">Profile</b-dropdown-item> -->
-          <b-dropdown-item @click="logout" to="/login">Logout</b-dropdown-item>
+          <b-dropdown-item @click="logout" to="/logout">Logout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
