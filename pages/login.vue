@@ -107,7 +107,6 @@ input, textarea {
 
 
   #login-button {
-    color: white;
     margin: 20px;
   }
 

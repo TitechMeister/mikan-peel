@@ -13,6 +13,6 @@
   @include outline-button($mikan);
 }
 .outline-button--colored:hover {
-  @include outline-button-hover($mikan);
+  @include outline-button--hover($mikan);
 }
 </style>

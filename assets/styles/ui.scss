@@ -26,7 +26,7 @@
   color: white;
 }
 
-@mixin outline-button-hover($color:#3f3f3f) {
+@mixin outline-button--hover($color:#3f3f3f) {
   transition: all 0.2s;
   display: inline-block;
   border-radius: 4px;
