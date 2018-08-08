@@ -1,61 +1,41 @@
-<template>
-  <section id="wrapper">
-    <Timecard/>
-    <Calendar :rawStart="rawStart"
-              :rawEnd="rawEnd"
-              :entriesMap="entriesMap"></Calendar>
-    <ListWorkplace/>
-    <Timetable :entriesMap="entriesMap"></Timetable>
-  </section>
+<template lang="pug">
+  #wrapper
+    LogoBig(:colored="true")
+    #wrapper-button
+      div(v-for="key in Object.keys(links)" :key="key")
+        a(:href="links[key]")
+          ButtonOutlineMikanInversed {{ key }}
 </template>
 
 <script>
-import ListWorkplace from '~/components/ListWorkplace'
-import Timecard from '~/components/Timecard'
-import Timetable from '~/components/Timetable'
-import Calendar from '~/components/Calendar'
+import LogoBig from '~/components/LogoBig'
+import ButtonOutlineMikanInversed from '~/components/ButtonOutlineMikanInversed.vue'
 
 export default {
-  data () {
-    return {
-      rawStart: "2018-08-16",
-      rawEnd: "2018-09-16",
-      entriesMap: {
-        po: [
-          {
-            start_at: "2018-01-27T01:22:00+09:00",
-            end_at: "2018-02-19T13:40:26+09:00",
-          },
-          {
-            start_at: "2018-02-27T01:00:00+09:00",
-            end_at: "2018-02-30T11:21:51+09:00",
-          },
-        ],
-        yo: [
-          {
-            start_at: "2018-01-27T01:00:00+09:00",
-            end_at: "2018-02-19T13:40:26+09:00",
-          },
-          {
-            start_at: "2018-01-27T01:22:00+09:00",
-            end_at: "2018-01-27T01:15:30+09:00",
-          },
-        ],
-      }
+  components: {
+    LogoBig,
+    ButtonOutlineMikanInversed
+  },
+  // should be in global store
+  computed : {
+    links () {
+      return JSON.parse(process.env.ERROR_LINKS)
     }
   },
-  components: {
-    ListWorkplace,
-    Timecard,
-    Timetable,
-    Calendar,
-  },
-  middleware: ['auth', 'underConstruction']
+  middleware: ['auth']
 }
 </script>
 
-<style lang="scss">
-#wrapper > * {
-  margin: 20px;
-}
+<style scoped lang="sass">
+#wrapper
+  margin-top: 2rem
+  display: flex
+  flex-direction: column
+  align-items: center
+
+#wrapper-button
+  display: flex
+  flex-direction: row
+  > *
+    margin: 0px 0.5rem
 </style>

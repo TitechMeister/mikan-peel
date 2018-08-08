@@ -1,16 +1,38 @@
-<template>
-  <div id="logo-wrapper">
-    <div id="logo">
-      <img src="/Mikan-logo-white.png" />
-    </div>
-    <h1>Mikan</h1>
-  </div>
+<template lang="pug">
+  #logo-wrapper
+    #logo
+      img(:src="imgSrc")
+    h1(:class="textClass") Mikan
 </template>
 
+<script>
+export default {
+  props: {
+    colored: false
+  },
+  computed: {
+    imgSrc () {
+      return this.colored ? '/Mikan-logo-orange.png' :'/Mikan-logo-white.png' 
+    },
+    textClass () {
+      return this.colored ? 'textOrange' : 'textWhite'
+    },
+  }
+}
+</script>
+
 <style scoped lang=scss>
+@import "../assets/styles/colors.scss";
+@import "../assets/styles/ui.scss";
+
+.textOrange {
+  color: $mikan;
+}
+.textWhite {
+  color: white;
+}
 #logo-wrapper {
   text-align: center;
-  color: white;
 
   #logo {
     height: 200px;
