@@ -9,17 +9,19 @@
         id="field-username"
         label="Username"
         label-for="input1">
-        <b-form-input
+        <FormInput
           id="input1"
+          :state="!loginError"
           v-model.trim="form.username" />
       </b-form-group>
       <b-form-group
         id="user-password"
         label="Password"
         label-for="input2">
-        <b-form-input
+        <FormInput
           id="input2"
           type="password"
+          :state="!loginError"
           v-model.trim="form.password" />
       </b-form-group>
       <ButtonOutlineMikan
@@ -48,11 +50,13 @@ import * as api from '../utils/mikan-api'
 import Cookies from 'js-cookie';
 import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
 import LogoBig from '~/components/LogoBig'
+import FormInput from '~/components/FormInput.vue'
 
 export default {
   components: {
     ButtonOutlineMikan,
-    LogoBig
+    LogoBig,
+    FormInput
   },
   computed: { },
   data () {
@@ -91,16 +95,16 @@ export default {
 </script>
 
 <style scoped lang=scss>
+input, textarea {
+  background-color: #f08300 !important;
+  border: 1px solid white !important;
+  color: white !important;
+}
 #login {
   width: 600px;
   text-align: center;
   color: white;
 
-  input, textarea {
-    background-color: #f08300;
-    border: 1px solid white;
-    color: white;
-  }
 
   #login-button {
     color: white;
