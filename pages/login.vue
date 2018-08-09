@@ -20,7 +20,7 @@
         label-for="input2">
         <FormInput
           id="input2"
-          type="password"
+          :isPassword="true"
           :state="!loginError"
           v-model.trim="form.password" />
       </b-form-group>
