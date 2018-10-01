@@ -57,9 +57,9 @@ export const setAuthToken = (token) => {
   axios.defaults.headers['Authorization'] = 'Bearer ' + token
 }
 
-export const saveAuthToken = (username, password) => {
+export const saveAuthToken = (usernameOrEmail, password) => {
   return axios.post('/auth/token/', {
-    username: username,
+    username_or_email: usernameOrEmail,
     password: password
   }).then(response => {
     if (response.status === 200) {
