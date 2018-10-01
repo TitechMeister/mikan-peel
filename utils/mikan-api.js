@@ -9,7 +9,7 @@ const axios = axiosBase.create({
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    // 'Authorization': 'Bearer ' + localStorage.mikanApiToken
+    // 'Authorization': `Bearer ${token}`
   },
   withCredentials: false,
   responseType: 'json'

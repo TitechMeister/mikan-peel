@@ -26,7 +26,8 @@ export const actions = {
   },
 
   nuxtClientInit ({ commit, dispatch }, context) {
-    commit('setToken', {token: localStorage.mikanApiToken})
+    const token = Cookies.get('mikan_token', token, { domain: `${document.domain}`})
+    commit('setToken', { token })
     dispatch('fetch')
   },
 
@@ -36,15 +37,14 @@ export const actions = {
   },
 
   async updateToken ({ commit, dispatch }, { token }) {
-    localStorage.mikanApiToken = token
     Cookies.set('mikan_token', token, { domain: `${document.domain}`, secure: true })
-    commit('setToken', {token})
+    commit('setToken', { token })
     await dispatch('fetch')
   },
 
   async fetchToken ({ commit, dispatch }, { username, password }) {
     const token = await api.saveAuthToken(username, password)
-    dispatch('updateToken', {token})
+    dispatch('updateToken', { token })
   },
 }
 
