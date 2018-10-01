@@ -57,7 +57,7 @@ export const actions = {
 
     // requires account informations have been fetched
     const apiParams = {in_progress: true, member: state.id}
-    const currentWork = (await api.get('/work', { params: apiParams })).data[0] || null
+    const currentWork = (await api.get('/activities', { params: apiParams })).data[0] || null
 
     commit('setCurrentWork', currentWork)
   },
@@ -66,7 +66,7 @@ export const actions = {
     // [TODO] Fix hard coding of time format
     const startTime = start_at || moment().format("YYYY-MM-DDTHH:mm")
     try {
-      await api.post('work', { workplace, start_at: startTime, end_at: null })
+      await api.post('/activities', { workplace, start_at: startTime, end_at: null })
       dispatch('fetchCurrentWork')
     } catch (e) {
       console.error(e)
@@ -77,7 +77,7 @@ export const actions = {
   async finishWorkForAccount ({ state, commit, dispatch }) {
     const endTime = moment().format("YYYY-MM-DDTHH:mm")
     try {
-      await api.patch(`work/${state.currentWork.id}`, { end_at: endTime })
+      await api.patch(`activities/${state.currentWork.id}`, { end_at: endTime })
       dispatch('fetchCurrentWork')
     } catch (e) {
       console.error(e)

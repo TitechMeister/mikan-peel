@@ -10,9 +10,10 @@
 @import "../assets/styles/colors.scss";
 
 .outline-button--colored {
-  @include outline-button($mikan);
+  @include outline-button--hover($mikan);
 }
 .outline-button--colored:hover {
-  @include outline-button--hover($mikan);
+  @include outline-button($mikan);
+  color: white
 }
 </style>

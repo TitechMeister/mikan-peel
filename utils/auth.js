@@ -1,4 +1,5 @@
 import * as api from '~/utils/mikan-api.js'
+import Cookies from 'js-cookie';
 
 export const checkToken = async (token) => {
   if (!token) return false
@@ -8,7 +9,8 @@ export const checkToken = async (token) => {
 
 export const checkLogin = async ({ store }) => {
   try {
-    return await checkToken(localStorage.mikanApiToken)
+    const token = Cookies.get('mikan_token', token, { domain: `${document.domain}`})
+    return await checkToken(token)
   } catch (e) {
     return false
   }

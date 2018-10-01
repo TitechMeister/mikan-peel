@@ -1,51 +1,41 @@
-<template>
-  <section>
-    <ListWorkplace/>
-    <Timecard/>
-    <Timetable :entriesMap="entriesMap"></Timetable>
-  </section>
+<template lang="pug">
+  #wrapper
+    LogoBig(:colored="true")
+    #wrapper-button
+      div(v-for="key in Object.keys(links)" :key="key")
+        a(:href="links[key]")
+          ButtonOutlineMikanInversed {{ key }}
 </template>
 
 <script>
-import ListWorkplace from '~/components/ListWorkplace'
-import Timecard from '~/components/Timecard'
-import Timetable from '~/components/Timetable'
+import LogoBig from '~/components/LogoBig'
+import ButtonOutlineMikanInversed from '~/components/ButtonOutlineMikanInversed.vue'
 
 export default {
-  data () {
-    return {
-      entriesMap: {
-        po: [
-          {
-            start_at: "2018-01-27T01:22:00+09:00",
-            end_at: "2018-02-19T13:40:26+09:00",
-          },
-          {
-            start_at: "2018-02-27T01:00:00+09:00",
-            end_at: "2018-02-30T11:21:51+09:00",
-          },
-        ],
-        yo: [
-          {
-            start_at: "2018-01-27T01:00:00+09:00",
-            end_at: "2018-02-19T13:40:26+09:00",
-          },
-          {
-            start_at: "2018-01-27T01:22:00+09:00",
-            end_at: "2018-01-27T01:15:30+09:00",
-          },
-        ],
-      }
+  components: {
+    LogoBig,
+    ButtonOutlineMikanInversed
+  },
+  // should be in global store
+  computed : {
+    links () {
+      return JSON.parse(process.env.ERROR_LINKS)
     }
   },
-  components: {
-    ListWorkplace,
-    Timecard,
-    Timetable,
-  },
-  middleware: ['auth', 'underConstruction']
+  middleware: ['auth']
 }
 </script>
 
-<style>
+<style scoped lang="sass">
+#wrapper
+  margin-top: 2rem
+  display: flex
+  flex-direction: column
+  align-items: center
+
+#wrapper-button
+  display: flex
+  flex-direction: row
+  > *
+    margin: 0px 0.5rem
 </style>

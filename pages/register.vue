@@ -8,31 +8,22 @@
       <b-form-group horizontal id="field-username"
                                label="ユーザー名"
                                label-for="form-username">
-        <b-form-input id="form-username"
-                      :state="!status_message.username"
-                      v-model.trim="form.username" />
-        <transition name="fade">
-          <b-form-invalid-feedback id="username-feedback"
-                                   v-if="status_message.username">
-            {{ status_message.username }}
-          </b-form-invalid-feedback>
-        </transition>
+        <FormInput id="form-username"
+                   v-model.trim="form.username"
+                   placeholder="username"
+                   :state="!status_message.username"
+                   :message="status_message.username" />
       </b-form-group>
 
       <b-form-group horizontal
                     id="field-email"
                     label="メール"
                     label-for="form-email">
-        <b-form-input id="form-email"
-                      :state="!status_message.email"
-                      placeholder="example@meister.tech"
-                      v-model.trim="form.email" />
-        <transition name="fade">
-          <b-form-invalid-feedback id="email-feedback"
-                                   v-if="status_message.email">
-            {{ status_message.email }}
-          </b-form-invalid-feedback>
-        </transition>
+        <FormInput id="form-email"
+                   v-model.trim="form.email"
+                   placeholder="example@meister.tech"
+                   :state="!status_message.email"
+                   :message="status_message.email" />
       </b-form-group>
 
       <b-form-group horizontal
@@ -40,18 +31,17 @@
                     label="パスワード"
                     label-for="form-password">
         <b-form inline
-                id="forms-password">
-          <b-form-input id="form-password"
-                        class="mb-2 mr-sm-2 mb-sm-0"
-                        :state="!status_message.password"
-                        type="password"
-                        v-model.trim="form.password" />
-          <b-form-input id="form-password-confirm"
-                        class="mr-sm-2 mb-sm-0"
-                        :state="passwordConfirm === form.password"
-                        type="password"
-                        placeholder="再入力"
-                        v-model.trim="passwordConfirm" />
+                id="forms-password"
+                class="inline-form">
+          <FormInput id="form-password"
+                     :state="!status_message.password"
+                     :isPassword="true"
+                     v-model.trim="form.password" />
+          <FormInput id="form-password-confirm"
+                     :state="passwordConfirm === form.password"
+                     :isPassword="true"
+                     placeholder="再入力"
+                     v-model.trim="passwordConfirm" />
         </b-form>
         <transition name="fade">
           <div id="password-feedback"
@@ -67,17 +57,16 @@
                     label="Name"
                     label-for="form-name">
         <b-form inline
-                id="form-name">
-          <b-form-input id="form-first-name"
-                        class="mb-2 mr-sm-2 mb-sm-0"
-                        :state="!status_message.first_name"
-                        placeholder="Chika"
-                        v-model.trim="form.first_name" />
-          <b-form-input id="form-last-name"
-                        class="mr-sm-2 mb-sm-0"
-                        :state="!status_message.last_name"
-                        placeholder="Takami"
-                        v-model.trim="form.last_name" />
+                id="form-name"
+                class="inline-form">
+          <FormInput id="form-first-name"
+                     :state="!status_message.first_name"
+                     placeholder="Chika"
+                     v-model.trim="form.first_name" />
+          <FormInput id="form-last-name"
+                     :state="!status_message.last_name"
+                     placeholder="Takami"
+                     v-model.trim="form.last_name" />
         </b-form>
         <transition name="fade">
           <div id="name-feedback"
@@ -93,17 +82,17 @@
                     label="名前"
                     label-for="form-ja-name">
         <b-form inline
-                id="form-ja-name">
-          <b-form-input id="form-ja-last-name"
-                        class="mb-2 mr-sm-2 mb-sm-0"
-                        :state="!status_message.ja_last_name"
-                        placeholder="高海"
-                        v-model.trim="form.ja_last_name" />
-          <b-form-input id="form-ja-first-name"
-                        class="mr-sm-2 mb-sm-0"
-                        :state="!status_message.ja_first_name"
-                        placeholder="千歌"
-                        v-model.trim="form.ja_first_name" />
+                id="form-ja-name"
+                class="inline-form">
+          <FormInput id="form-ja-last-name"
+                     :state="!status_message.ja_last_name"
+                     placeholder="高海"
+                     v-model.trim="form.ja_last_name" />
+          <FormInput id="form-ja-first-name"
+                     class="mr-sm-2 mb-sm-0"
+                     :state="!status_message.ja_first_name"
+                     placeholder="千歌"
+                     v-model.trim="form.ja_first_name" />
         </b-form>
         <transition name="fade">
           <div id="ja-name-feedback"
@@ -173,16 +162,10 @@
         id="field-registration-code"
         label="登録コード"
         label-for="form-registration-code">
-        <b-form-input
-          id="form-registration-code"
-          :state="!status_message.registration_code"
-          v-model.trim="form.registration_code" />
-        <transition name="fade">
-          <b-form-invalid-feedback id="registration-code-feedback"
-                                   v-if="status_message.registration_code">
-            {{ status_message.registration_code }}
-          </b-form-invalid-feedback>
-        </transition>
+        <FormInput id="form-registration-code"
+                   :state="!status_message.registration_code"
+                   :message="status_message.registration_code"
+                   v-model.trim="form.registration_code" />
       </b-form-group>
 
       <div id="register-button-wrapper">
@@ -212,11 +195,13 @@ import * as api from '~/utils/mikan-api'
 import Cookies from 'js-cookie';
 import ButtonOutlineMikan from '~/components/ButtonOutlineMikan'
 import LogoMedium from '~/components/LogoMedium'
+import FormInput from '~/components/FormInput.vue'
 
 export default {
   components: {
     ButtonOutlineMikan,
-    LogoMedium
+    LogoMedium,
+    FormInput
   },
   data () {
     return {
@@ -365,6 +350,9 @@ export default {
   }
   .invalid-feedback {
     color: white;
+  }
+  .inline-form > *:first-child {
+    margin-right:  1rem;
   }
   .invalid-feedback-inline-form {
     width: 100%;

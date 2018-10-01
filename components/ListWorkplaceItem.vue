@@ -74,16 +74,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../assets/styles/ui.scss";
+
 .workcard {
+  @include card;
   display: grid;
   transition: all .3s ease;
   max-width: 500px;
   height: 100px;
-  margin: 20px;
-  margin: 0px 20px 0px;
-  border-radius: 0.25rem;
-  border-style: solid;
-  border-width: 1px;
   grid-template:
       "info    count   detail " 45px
       "place   count   detail " 55px

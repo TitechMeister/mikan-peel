@@ -1,7 +1,6 @@
 <template>
-  <div
-    class="foldout-radio-item"
-    @click.prevent="onClick">
+  <div class="foldout-radio-item"
+       @click.prevent="onClick">
     <input type="radio"
            class="foldout-radio-input"
            :name=identifier
