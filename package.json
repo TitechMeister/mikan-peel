@@ -15,6 +15,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/font-awesome": "^1.0.4",
@@ -29,6 +30,7 @@
     "nuxt": "^2.12.1",
     "pug-html-loader": "^1.1.5",
     "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
     "scroll-behavior-polyfill": "^2.0.13",
     "style-loader": "^1.1.3",
