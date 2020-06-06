@@ -2,20 +2,35 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    es6: true
   },
-  parserOptions: {
-    parser: 'babel-eslint'
-  },
+  parser: '@typescript-eslint/parser',
   extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential'
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier/react',
   ],
-  // required to lint *.vue files
   plugins: [
-    'vue'
+    'react',
+    'prettier',
+    '@typescript-eslint',
   ],
-  // add your custom rules here
-  rules: {}
+  rules: {
+    'prettier/prettier': 'error'
+  },
+  settings: {
+    'react': {
+      'version': 'detect'
+    }
+  },
+  overrides: [
+    {
+      'files': ['**/*.tsx'],
+      'rules': {
+        'react/prop-types': 'off'
+      }
+    }
+  ]
 }
