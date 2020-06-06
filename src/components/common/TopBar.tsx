@@ -11,7 +11,7 @@ const TopBar: React.FC = () => {
   const username = 'username'
 
   return (
-    <Navbar variant='dark' expand='lg' className={styles.self}>
+    <Navbar bg='primary' variant='dark' expand='lg' className={styles.self}>
       <Navbar.Brand as={Link} to='/'>
         Mikan
       </Navbar.Brand>

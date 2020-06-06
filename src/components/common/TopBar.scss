@@ -1,7 +1,5 @@
-@import '../../styles/variables.scss';
 @import '../../styles/ui.scss';
 
 .self {
   @include shallow-shadow;
-  background-color: $PRIMARY_COLOR;
 }

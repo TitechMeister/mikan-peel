@@ -2,6 +2,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: 'development',
@@ -30,6 +31,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /\.global.scss$/i,
         use: [
           'style-loader',
           {
@@ -45,12 +47,24 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/i,
+        test: /\.global\.s[ac]ss$/i,
         use: [
           'style-loader',
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
+          'sass-loader'
         ],
-      }
+      },
     ]
   },
   devServer: {
@@ -74,6 +88,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './index.html',
-    })
+    }),
+    new Dotenv()
   ]
 }
