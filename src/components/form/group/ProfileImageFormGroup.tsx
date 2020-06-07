@@ -18,8 +18,9 @@ const ProfileImageFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
       <Form.Control
         type='file'
         custom
+        name='profile_image'
         onChange={onChange}
-        value={values.team || ''}
+        value={values.profile_image || ''}
         accept='image/*'
         placeholder='Choose a image...'
       />

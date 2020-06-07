@@ -13,7 +13,7 @@ const JapaneseNameFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
   }
 
   return (
-    <Form.Group controlId='formEnglishName' className={styles.form}>
+    <Form.Group controlId='formJapaneseName' className={styles.form}>
       <Form.Label>Name</Form.Label>
       <Form inline>
         <Row>
@@ -22,9 +22,9 @@ const JapaneseNameFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
               type='text'
               className='mb-2 mr-sm-2'
               placeholder='山田'
-              name='ja_first_name'
+              name='ja_last_name'
               onChange={onChange}
-              value={values.ja_first_name || ''}
+              value={values.ja_last_name || ''}
             />
           </Col>
           <Col sm={6}>

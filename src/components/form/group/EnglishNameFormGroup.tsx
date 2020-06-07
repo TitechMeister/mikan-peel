@@ -22,7 +22,7 @@ const EnglishNameFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
               type='text'
               className='mb-2 mr-sm-2'
               placeholder='Yamada'
-              name='en_first_name'
+              name='en_last_name'
               onChange={onChange}
               value={values.en_last_name || ''}
             />

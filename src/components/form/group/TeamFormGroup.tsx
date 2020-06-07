@@ -20,15 +20,14 @@ const TeamFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
   return (
     <Form.Group controlId='formTeam' className={styles.form}>
       <Form.Label>班</Form.Label>
-      <Form.Control
-        as='select'
-        custom
-        onChange={onChange}
-        value={values.team || ''}
-      >
+      <Form.Control as='select' custom onChange={onChange}>
         {teams &&
           teams.map((team) => (
-            <option key={team.id} value={team.id}>
+            <option
+              key={team.id}
+              value={team.id}
+              selected={team.id === values.team}
+            >
               {team.name}
             </option>
           ))}
