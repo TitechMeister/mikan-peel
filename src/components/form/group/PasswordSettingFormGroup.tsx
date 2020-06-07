@@ -6,6 +6,7 @@ import styles from './BasicFormGroup.scss'
 const PasswordSettingFormGroup: React.FC<FormProps> = ({
   onUpdate,
   values,
+  errors,
 }) => {
   const onChange = (event: OnChangeEvent): void => {
     const name = event.target.name
@@ -26,7 +27,11 @@ const PasswordSettingFormGroup: React.FC<FormProps> = ({
             name='password'
             onChange={onChange}
             value={values.password || ''}
+            isInvalid={!!errors?.password}
           />
+          <Form.Control.Feedback type='invalid'>
+            {errors?.password}
+          </Form.Control.Feedback>
         </Col>
         <Col sm={6}>
           <Form.Control
@@ -35,7 +40,14 @@ const PasswordSettingFormGroup: React.FC<FormProps> = ({
             name='passwordConfirm'
             onChange={onChange}
             value={values.passwordConfirm || ''}
+            isInvalid={
+              (values.password || values.passwordConfirm) &&
+              values.password !== values.passwordConfirm
+            }
           />
+          <Form.Control.Feedback type='invalid'>
+            Password did not match.
+          </Form.Control.Feedback>
         </Col>
       </Row>
     </Form.Group>

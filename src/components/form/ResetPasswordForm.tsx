@@ -22,6 +22,7 @@ const ResetPasswordForm: React.FC<Props> = ({ token }: Props) => {
       event.preventDefault()
 
       try {
+        console.log(token, values.password)
         if (token && values.password) {
           await mikanApi.postWithoutDefaultHeader('/recover/renew', {
             token,

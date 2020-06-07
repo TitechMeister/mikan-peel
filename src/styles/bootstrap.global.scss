@@ -2,6 +2,8 @@
 
 $theme-colors: (
   "primary": $PRIMARY_COLOR,
+  "success": $VALID_COLOR,
+  "danger": $INVALID_COLOR,
 );
 
 $yiq-text-dark: $PRIMARY_COLOR !default;

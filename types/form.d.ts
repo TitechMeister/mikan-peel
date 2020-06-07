@@ -2,9 +2,14 @@ type FormValues = {
   [key: string]: any
 }
 
+type FormErrors = {
+  [key: string]: any
+}
+
 type FormProps = {
   onUpdate: (update: FormValues) => void
   values: FormValues
+  errors?: FormErrors
 }
 
 type OnChangeEvent =

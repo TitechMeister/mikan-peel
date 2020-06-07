@@ -5,6 +5,9 @@ import MikanApiContext from '../../context/MikanApiContext'
 
 const RecoverForm: React.FC = () => {
   const [values, setValues] = useState<FormValues>({})
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [validated, setValidated] = useState(false)
+
   const mikanApi = useContext(MikanApiContext)
 
   const onUpdate = useCallback(
@@ -24,15 +27,20 @@ const RecoverForm: React.FC = () => {
           })
         }
       } catch (e) {
-        console.log(e)
+        const errors = e?.response?.data
+        console.log(e?.response)
+        if (errors) {
+          setValidated(true)
+          setErrors(errors)
+        }
       }
     },
     [mikanApi, values],
   )
 
   return (
-    <Form onSubmit={onSubmit}>
-      <EmailFormGroup onUpdate={onUpdate} values={values} />
+    <Form onSubmit={onSubmit} validated={validated}>
+      <EmailFormGroup onUpdate={onUpdate} values={values} errors={errors} />
       <Button variant='outline-light' onClick={onSubmit}>
         Submit
       </Button>

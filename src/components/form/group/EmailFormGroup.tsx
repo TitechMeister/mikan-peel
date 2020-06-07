@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap'
 
 import styles from './BasicFormGroup.scss'
 
-const EmailFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
+const EmailFormGroup: React.FC<FormProps> = ({ onUpdate, values, errors }) => {
   const onChange = (event: OnChangeEvent): void => {
     const name = event.target.name
     const newValue = event.target.value
@@ -21,7 +21,11 @@ const EmailFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
         name='email'
         onChange={onChange}
         value={values.email || ''}
+        isInvalid={!!errors?.email}
       />
+      <Form.Control.Feedback type='invalid'>
+        {errors?.email}
+      </Form.Control.Feedback>
     </Form.Group>
   )
 }
