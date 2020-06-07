@@ -13,12 +13,16 @@ import ResetPasswordView from './views/ResetPasswordView'
 import LogoutView from './views/LogoutView'
 
 import styles from './App.scss'
+import AuthContext from './context/AuthContext'
+import { useMikanApi } from './utils/mikanApi'
+import MikanApiContext from './context/MikanApiContext'
 
 const fullScreenPaths = ['/login', '/register', '/recover', '/recover/:token']
 
 const App: React.FC = () => {
   const { pathname } = useLocation()
   const auth = useAuth()
+  const mikanApi = useMikanApi({ token: auth?.token })
   const isFullScreen = useMemo(
     () =>
       fullScreenPaths.some(
@@ -33,27 +37,23 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.self}>
-      {!isFullScreen && <TopBar auth={auth} />}
-      <div className={c({ [styles.fullscreen]: isFullScreen })}>
-        <PrivateRoute auth={auth} exact={true} path='/' component={HomeView} />
-        <Route
-          exact={true}
-          path='/login'
-          component={() => <LoginView auth={auth} />}
-        />
-        <Route
-          exact={true}
-          path='/logout'
-          component={() => <LogoutView auth={auth} />}
-        />
-        <Route exact={true} path='/register' component={RegisterView} />
-        <Route exact={true} path='/recover' component={RecoverView} />
-        <Route
-          exact={true}
-          path='/recover/:token'
-          component={ResetPasswordView}
-        />
-      </div>
+      <AuthContext.Provider value={auth}>
+        <MikanApiContext.Provider value={mikanApi}>
+          {!isFullScreen && <TopBar />}
+          <div className={c({ [styles.fullscreen]: isFullScreen })}>
+            <PrivateRoute exact={true} path='/' component={HomeView} />
+            <Route exact={true} path='/login' component={LoginView} />
+            <Route exact={true} path='/logout' component={LogoutView} />
+            <Route exact={true} path='/register' component={RegisterView} />
+            <Route exact={true} path='/recover' component={RecoverView} />
+            <Route
+              exact={true}
+              path='/recover/:token'
+              component={ResetPasswordView}
+            />
+          </div>
+        </MikanApiContext.Provider>
+      </AuthContext.Provider>
     </div>
   )
 }

@@ -4,18 +4,13 @@ import { Container } from 'react-bootstrap'
 
 import styles from './LoginView.scss'
 import LoginForm from '../components/form/LoginForm'
-import type { Auth } from '../utils/auth'
 
-type Props = {
-  auth: Auth
-}
-
-const LoginView: React.FC<Props> = ({ auth }) => {
+const LoginView: React.FC = () => {
   return (
     <div className={styles.self}>
       <Container>
         <LogoBig type='light' />
-        <LoginForm auth={auth} />
+        <LoginForm />
       </Container>
     </div>
   )

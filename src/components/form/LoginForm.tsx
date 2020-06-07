@@ -1,17 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import styles from './LoginForm.scss'
+import { useHistory } from 'react-router'
 import UsernameFormGroup from './group/UsernameFormGroup'
 import PasswordFormGroup from './group/PasswordFormGroup'
-import type { Auth } from '../../utils/auth'
-import { useHistory } from 'react-router'
+import AuthContext from '../../context/AuthContext'
+import styles from './LoginForm.scss'
 
-type Props = {
-  auth: Auth
-}
-
-const LoginForm: React.FC<Props> = ({ auth }: Props) => {
+const LoginForm: React.FC = () => {
   const histroy = useHistory()
+  const auth = useContext(AuthContext)
   const [values, setValues] = useState<FormValues>({})
   const onUpdate = useCallback(
     (update: FormValues) => {

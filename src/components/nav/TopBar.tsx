@@ -1,21 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import TopBarLink from './TopBarLink'
-import type { Auth } from '../../utils/auth'
+import AuthContext from '../../context/AuthContext'
 
 import styles from './TopBar.scss'
 
-type Props = {
-  auth: Auth
-}
-
-const TopBar: React.FC<Props> = ({ auth }: Props) => {
+const TopBar: React.FC = () => {
   const { pathname } = useLocation()
-
-  console.log(auth?.account)
-
-  const username = auth?.account?.username
+  const auth = useContext(AuthContext)
+  const username = auth?.account?.username || ''
 
   return (
     <Navbar bg='primary' variant='dark' expand='lg' className={styles.self}>
