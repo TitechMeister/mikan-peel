@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, matchPath } from 'react-router-dom'
 import TopBarLink from './TopBarLink'
 
 import styles from './TopBar.scss'
@@ -9,6 +9,9 @@ const TopBar: React.FC = () => {
   const { pathname } = useLocation()
 
   const username = 'username'
+
+  const match = matchPath(pathname, { path: '/login', exact: true })
+  console.log(match)
 
   return (
     <Navbar bg='primary' variant='dark' expand='lg' className={styles.self}>

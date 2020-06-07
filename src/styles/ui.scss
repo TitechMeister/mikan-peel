@@ -21,9 +21,9 @@
   border-radius: 4px;
   text-decoration: none;
   padding: 10px 30px;
-  border: 1px solid white;
+  border: 1px solid var(--light);
   background-color: $color ;
-  color: white;
+  color: var(--light);
 }
 
 @mixin outline-button--hover($color:#3f3f3f) {
@@ -33,7 +33,7 @@
   text-decoration: none;
   padding: 10px 30px;
   border: 1px solid $color;
-  background-color: white;
+  background-color: var(--light);
   color: $color;
 }
 
@@ -49,9 +49,9 @@
   border-radius: 0.25rem;
   outline: none;
   background: none;
-  color: unset;
+  color: var(--light);
   appearance: none;
-  border: 1px solid white;
+  border: 1px solid var(--light);
   transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
 

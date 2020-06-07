@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+@import '../../styles/ui.scss';
+
+.self {
+  text-align: center;
+
+  :global(.form-label) {
+    color: var(--light);
+  }
+
+  :global(.form-control) {
+    @include form-element;
+
+    &:focus {
+      @include form-element;
+    }
+  }
+}
