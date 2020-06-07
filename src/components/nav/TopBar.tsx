@@ -10,9 +10,6 @@ const TopBar: React.FC = () => {
 
   const username = 'username'
 
-  const match = matchPath(pathname, { path: '/login', exact: true })
-  console.log(match)
-
   return (
     <Navbar bg='primary' variant='dark' expand='lg' className={styles.self}>
       <Navbar.Brand as={Link} to='/'>

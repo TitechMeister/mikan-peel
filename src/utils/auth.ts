@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
-import { saveAuthToken } from './mikanApi'
 import Cookies from 'js-cookie'
+import { useMikanApi } from './mikanApi'
 
 type Auth = {
   authed: boolean
@@ -13,6 +13,7 @@ type Auth = {
 const useAuth = (): Auth => {
   const [authed, setAuthed] = useState<boolean>(false)
   const [token, setToken] = useState<string>(null)
+  const mikanApi = useMikanApi()
 
   const init = useCallback(() => {
     const token = Cookies.get('mikan_token', {
@@ -24,6 +25,7 @@ const useAuth = (): Auth => {
   const updateToken = useCallback(
     (token: string) => {
       setToken(token)
+      console.log({ token })
       Cookies.set('mikan_token', token || '', {
         domain: `${document.domain}`,
         secure: true,
@@ -35,7 +37,7 @@ const useAuth = (): Auth => {
   const login = useCallback(
     async (usernameOrEmail: string, password: string) => {
       try {
-        const token = await saveAuthToken(usernameOrEmail, password)
+        const token = await mikanApi.auth(usernameOrEmail, password)
         setAuthed(!!token)
         updateToken(token)
         return !!token
@@ -45,7 +47,7 @@ const useAuth = (): Auth => {
         return false
       }
     },
-    [setAuthed, setToken],
+    [setAuthed, setToken, mikanApi.auth],
   )
 
   const logout = useCallback(() => {

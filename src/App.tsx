@@ -34,7 +34,11 @@ const App: React.FC = () => {
       {!isFullScreen && <TopBar />}
       <div className={c({ [styles.fullscreen]: isFullScreen })}>
         <PrivateRoute auth={auth} exact={true} path='/' component={HomeView} />
-        <Route exact={true} path='/login' component={LoginView} />
+        <Route
+          exact={true}
+          path='/login'
+          component={() => <LoginView auth={auth} />}
+        />
         <Route exact={true} path='/register' component={RegisterView} />
         <Route exact={true} path='/recover' component={RecoverView} />
         <Route
