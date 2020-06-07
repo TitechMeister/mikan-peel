@@ -13,6 +13,7 @@ const ResetPasswordView: React.FC = () => {
     <div className={styles.self}>
       <Container>
         <LogoMedium type='light' />
+        <h2>Enter new password</h2>
         <ResetPasswordForm />
       </Container>
     </div>
