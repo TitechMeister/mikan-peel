@@ -1,11 +1,16 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
-import { Link, useLocation, matchPath } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import TopBarLink from './TopBarLink'
+import type { Auth } from '../../utils/auth'
 
 import styles from './TopBar.scss'
 
-const TopBar: React.FC = () => {
+type Props = {
+  auth: Auth
+}
+
+const TopBar: React.FC<Props> = ({ auth }: Props) => {
   const { pathname } = useLocation()
 
   const username = 'username'

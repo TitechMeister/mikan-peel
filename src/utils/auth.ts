@@ -25,7 +25,6 @@ const useAuth = (): Auth => {
   const updateToken = useCallback(
     (token: string) => {
       setToken(token)
-      console.log({ token })
       Cookies.set('mikan_token', token || '', {
         domain: `${document.domain}`,
         secure: true,
