@@ -13,7 +13,9 @@ type Props = {
 const TopBar: React.FC<Props> = ({ auth }: Props) => {
   const { pathname } = useLocation()
 
-  const username = 'username'
+  console.log(auth?.account)
+
+  const username = auth?.account?.username
 
   return (
     <Navbar bg='primary' variant='dark' expand='lg' className={styles.self}>

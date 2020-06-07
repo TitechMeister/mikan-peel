@@ -47,6 +47,8 @@ const normalizeApiPath = (apiPath: string): string => {
 }
 
 const useMikanApi = ({ token }: MikanApiProps = {}): MikanApi => {
+  console.log(token)
+
   const instance = useMemo(
     () =>
       axios.create({
@@ -54,7 +56,7 @@ const useMikanApi = ({ token }: MikanApiProps = {}): MikanApi => {
         headers: {
           'Content-Type': 'application/json',
           'X-Requested-With': 'XMLHttpRequest',
-          Authorization: token ? `Bearer ${token}` : undefined,
+          Authorization: token && `Bearer ${token}`,
         },
         withCredentials: false,
         responseType: 'json',
@@ -132,6 +134,8 @@ const useMikanApi = ({ token }: MikanApiProps = {}): MikanApi => {
 
       if (response.status === 200) {
         const token = response.data.token
+        console.log(`Bearer ${token}`)
+        instance.defaults.headers['Authorization'] = `Bearer ${token}` //一時的
         return token
       }
 
