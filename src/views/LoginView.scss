@@ -1,10 +1,24 @@
 .self {
   background-color: var(--primary);
+  color: var(--light);
   width: 100vw;
   min-height: 100vh;
+
+  text-align: center;
 
   :global(.container) {
     padding: 20px;
     max-width: 600px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  a, a:hover, a:focus {
+    margin: 5px;
+    color: var(--light);
   }
 }
