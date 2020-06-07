@@ -1,0 +1,39 @@
+@import '../../styles/ui.scss';
+
+.form {
+  :global(.form-label) {
+    color: var(--light);
+  }
+
+  :global(.form-inline) :global(.form-control) {
+    width: 100%;
+  }
+
+  :global(.custom-select) {
+    @include form-element;
+
+    &:focus {
+      @include form-element;
+      @include form-element--focus(var(--primary));
+    }
+
+    &::placeholder {
+      color: var(--light);
+      opacity: 0.5;
+    }
+  }
+
+  :global(.form-control) {
+    @include form-element;
+
+    &:focus {
+      @include form-element;
+      @include form-element--focus(var(--primary));
+    }
+
+    &::placeholder {
+      color: var(--light);
+      opacity: 0.5;
+    }
+  }
+}

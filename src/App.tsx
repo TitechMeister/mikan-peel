@@ -5,10 +5,11 @@ import c from 'classnames'
 import TopBar from './components/common/TopBar'
 import HomeView from './views/HomeView'
 import LoginView from './views/LoginView'
+import RegisterView from './views/RegisterView'
 
 import styles from './App.scss'
 
-const fullScreenPaths = ['/login']
+const fullScreenPaths = ['/login', '/register']
 
 const App: React.FC = () => {
   const { pathname } = useLocation()
@@ -25,15 +26,13 @@ const App: React.FC = () => {
   )
 
   return (
-    <div>
+    <div className={styles.self}>
       {!isFullScreen && <TopBar />}
-      <Container
-        className={c({ [styles.fullscreen]: isFullScreen })}
-        fluid={isFullScreen}
-      >
+      <div className={c({ [styles.fullscreen]: isFullScreen })}>
         <Route exact={true} path='/' component={HomeView} />
         <Route exact={true} path='/login' component={LoginView} />
-      </Container>
+        <Route exact={true} path='/register' component={RegisterView} />
+      </div>
     </div>
   )
 }

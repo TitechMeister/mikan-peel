@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
+import c from 'classnames'
 import styles from './LoginForm.scss'
 
 const LoginForm: React.FC = () => {
   return (
-    <Form className={styles.self}>
+    <Form className={c(styles.self, styles.form)}>
       <Form.Group controlId='formUsername'>
         <Form.Label>Username</Form.Label>
         <Form.Control type='text' />

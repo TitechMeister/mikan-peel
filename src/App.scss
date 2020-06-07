@@ -1,6 +1,8 @@
-.fullscreen:global(.container-fluid) {
-  padding-right: 0px;
-  padding-left: 0px;
-  min-height: 100vh;
-  width: 100vw;
+.self {
+  .fullscreen {
+    padding-right: 0px;
+    padding-left: 0px;
+    min-height: 100vh;
+    width: 100vw;
+  }
 }
