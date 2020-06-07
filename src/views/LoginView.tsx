@@ -3,7 +3,7 @@ import LogoBig from '../components/logo/LogoBig'
 import { Container } from 'react-bootstrap'
 
 import styles from './LoginView.scss'
-import LoginForm from '../components/login/LoginForm'
+import LoginForm from '../components/form/LoginForm'
 
 const LoginView: React.FC = () => {
   return (

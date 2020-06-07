@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import LogoMedium from '../components/logo/LogoMedium'
-import RegisterForm from '../components/register/RegisterForm'
+import RegisterForm from '../components/form/RegisterForm'
 
 import styles from './RegisterView.scss'
 

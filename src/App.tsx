@@ -7,11 +7,12 @@ import HomeView from './views/HomeView'
 import LoginView from './views/LoginView'
 import RegisterView from './views/RegisterView'
 import RecoverView from './views/RecoverView'
+import ResetPasswordView from './views/ResetPasswordView'
 
 import styles from './App.scss'
 import { useAuth } from './utils/auth'
 
-const fullScreenPaths = ['/login', '/register', '/recover']
+const fullScreenPaths = ['/login', '/register', '/recover', '/recover/:token']
 
 const App: React.FC = () => {
   const { pathname } = useLocation()
@@ -36,6 +37,11 @@ const App: React.FC = () => {
         <Route exact={true} path='/login' component={LoginView} />
         <Route exact={true} path='/register' component={RegisterView} />
         <Route exact={true} path='/recover' component={RecoverView} />
+        <Route
+          exact={true}
+          path='/recover/:token'
+          component={ResetPasswordView}
+        />
       </div>
     </div>
   )

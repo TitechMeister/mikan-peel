@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 
 import styles from './RecoverView.scss'
 import LogoMedium from '../components/logo/LogoMedium'
-import RecoverForm from '../components/recover/RecoverForm'
+import RecoverForm from '../components/form/RecoverForm'
 
 const RecoverView: React.FC = () => {
   return (
