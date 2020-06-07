@@ -18,28 +18,26 @@ const PasswordSettingFormGroup: React.FC<FormProps> = ({
   return (
     <Form.Group controlId='formPassword' className={styles.form}>
       <Form.Label>パスワード</Form.Label>
-      <Form inline>
-        <Row>
-          <Col sm={6}>
-            <Form.Control
-              type='password'
-              className='mb-2 mr-sm-2'
-              name='password'
-              onChange={onChange}
-              value={values.password || ''}
-            />
-          </Col>
-          <Col sm={6}>
-            <Form.Control
-              type='password'
-              placeholder='再入力'
-              name='passwordConfirm'
-              onChange={onChange}
-              value={values.passwordConfirm || ''}
-            />
-          </Col>
-        </Row>
-      </Form>
+      <Row>
+        <Col sm={6}>
+          <Form.Control
+            type='password'
+            className='mb-2'
+            name='password'
+            onChange={onChange}
+            value={values.password || ''}
+          />
+        </Col>
+        <Col sm={6}>
+          <Form.Control
+            type='password'
+            placeholder='再入力'
+            name='passwordConfirm'
+            onChange={onChange}
+            value={values.passwordConfirm || ''}
+          />
+        </Col>
+      </Row>
     </Form.Group>
   )
 }

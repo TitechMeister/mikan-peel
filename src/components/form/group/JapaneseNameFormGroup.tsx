@@ -14,30 +14,28 @@ const JapaneseNameFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
 
   return (
     <Form.Group controlId='formJapaneseName' className={styles.form}>
-      <Form.Label>Name</Form.Label>
-      <Form inline>
-        <Row>
-          <Col sm={6}>
-            <Form.Control
-              type='text'
-              className='mb-2 mr-sm-2'
-              placeholder='山田'
-              name='ja_last_name'
-              onChange={onChange}
-              value={values.ja_last_name || ''}
-            />
-          </Col>
-          <Col sm={6}>
-            <Form.Control
-              type='text'
-              placeholder='太郎'
-              name='ja_first_name'
-              onChange={onChange}
-              value={values.ja_first_name || ''}
-            />
-          </Col>
-        </Row>
-      </Form>
+      <Form.Label>名前</Form.Label>
+      <Row>
+        <Col sm={6}>
+          <Form.Control
+            type='text'
+            className='mb-2'
+            placeholder='山田'
+            name='ja_last_name'
+            onChange={onChange}
+            value={values.ja_last_name || ''}
+          />
+        </Col>
+        <Col sm={6}>
+          <Form.Control
+            type='text'
+            placeholder='太郎'
+            name='ja_first_name'
+            onChange={onChange}
+            value={values.ja_first_name || ''}
+          />
+        </Col>
+      </Row>
     </Form.Group>
   )
 }

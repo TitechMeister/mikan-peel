@@ -15,29 +15,27 @@ const EnglishNameFormGroup: React.FC<FormProps> = ({ onUpdate, values }) => {
   return (
     <Form.Group controlId='formEnglishName' className={styles.form}>
       <Form.Label>Name</Form.Label>
-      <Form inline>
-        <Row>
-          <Col sm={6}>
-            <Form.Control
-              type='text'
-              className='mb-2 mr-sm-2'
-              placeholder='Yamada'
-              name='en_last_name'
-              onChange={onChange}
-              value={values.en_last_name || ''}
-            />
-          </Col>
-          <Col sm={6}>
-            <Form.Control
-              type='text'
-              placeholder='Taro'
-              name='en_first_name'
-              onChange={onChange}
-              value={values.en_first_name || ''}
-            />
-          </Col>
-        </Row>
-      </Form>
+      <Row>
+        <Col sm={6}>
+          <Form.Control
+            type='text'
+            className='mb-2'
+            placeholder='Yamada'
+            name='en_last_name'
+            onChange={onChange}
+            value={values.en_last_name || ''}
+          />
+        </Col>
+        <Col sm={6}>
+          <Form.Control
+            type='text'
+            placeholder='Taro'
+            name='en_first_name'
+            onChange={onChange}
+            value={values.en_first_name || ''}
+          />
+        </Col>
+      </Row>
     </Form.Group>
   )
 }
