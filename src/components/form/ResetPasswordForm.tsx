@@ -1,8 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import PasswordSettingFormGroup from './group/PasswordSettingFormGroup'
+import MikanApiContext from '../../context/MikanApiContext'
 
-const ResetPasswordForm: React.FC = () => {
+type Props = {
+  token: string
+}
+
+const ResetPasswordForm: React.FC<Props> = ({ token }: Props) => {
+  const mikanApi = useContext(MikanApiContext)
   const [values, setValues] = useState<FormValues>({})
   const onUpdate = useCallback(
     (update: FormValues) => {
@@ -11,12 +17,26 @@ const ResetPasswordForm: React.FC = () => {
     [setValues],
   )
 
-  const onSubmit = useCallback(() => {
-    console.log(values)
-  }, [values])
+  const onSubmit = useCallback(
+    async (event: OnSubmitEvent) => {
+      event.preventDefault()
+
+      try {
+        if (token && values.password) {
+          await mikanApi.postWithoutDefaultHeader('/recover/renew', {
+            token,
+            password: values.password,
+          })
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    [token, values],
+  )
 
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <PasswordSettingFormGroup onUpdate={onUpdate} values={values} />
       <Button variant='outline-light' onClick={onSubmit}>
         Submit

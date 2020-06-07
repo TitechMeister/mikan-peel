@@ -7,7 +7,7 @@ const ExecutiveGenerationFormGroup: React.FC<FormProps> = ({
   onUpdate,
   values,
 }) => {
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const onChange = (event: OnChangeEvent): void => {
     const name = event.target.name
     const newValue = event.target.value
     onUpdate({

@@ -17,21 +17,26 @@ const LoginForm: React.FC = () => {
     [setValues],
   )
 
-  const onSubmit = useCallback(async () => {
-    try {
-      const success = await auth.login(values.username, values.password)
-      if (success) {
-        histroy.push('/')
-      } else {
-        console.log('error')
+  const onSubmit = useCallback(
+    async (event: OnSubmitEvent) => {
+      event.preventDefault()
+
+      try {
+        const success = await auth.login(values.username, values.password)
+        if (success) {
+          histroy.push('/')
+        } else {
+          console.log('error')
+        }
+      } catch (e) {
+        console.log('error', e)
       }
-    } catch (e) {
-      console.log('error', e)
-    }
-  }, [auth, histroy, values])
+    },
+    [auth, histroy, values],
+  )
 
   return (
-    <Form className={styles.self}>
+    <Form className={styles.self} onSubmit={onSubmit}>
       <UsernameFormGroup onUpdate={onUpdate} values={values} />
       <PasswordFormGroup onUpdate={onUpdate} values={values} />
       <Button variant='outline-light' onClick={onSubmit}>

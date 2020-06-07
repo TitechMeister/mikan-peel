@@ -19,9 +19,13 @@ const RegisterForm: React.FC = () => {
     [setValues],
   )
 
-  const onSubmit = useCallback(() => {
-    console.log(values)
-  }, [values])
+  const onSubmit = useCallback(
+    (event: OnSubmitEvent) => {
+      event.preventDefault()
+      console.log(values)
+    },
+    [values],
+  )
 
   return (
     <Form>
