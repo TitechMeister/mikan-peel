@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { useMikanApi } from './mikanApi'
 
@@ -31,30 +31,44 @@ type Auth = {
   logout: () => void
 }
 
+const domain = document.domain
+
 const useAuth = (): Auth => {
   const [authed, setAuthed] = useState<boolean>(false)
   const [token, setToken] = useState<string>(null)
   const [account, setAccount] = useState(null)
   const mikanApi = useMikanApi({ token })
 
-  const init = useCallback(() => {
-    const token = Cookies.get('mikan_token', {
-      domain: `${document.domain}`,
-    })
-    setToken(token)
-  }, [setToken])
+  // fetch account info
+  useEffect(() => {
+    if (token) {
+      mikanApi
+        .get('/account')
+        .then((res) => setAccount(res.data))
+        .catch((e) => {
+          console.log(e)
+          setToken(null)
+          setAuthed(false)
+        })
+    }
+  }, [token, mikanApi.get, setAccount])
 
-  const fetchAccount = useCallback(async () => {
-    const account = (await mikanApi.get('/account')).data
-    setAccount(account)
-  }, [mikanApi.get, setAccount])
+  const init = useCallback(async () => {
+    if (!token) {
+      const token = Cookies.get('mikan_token', {
+        domain,
+      })
+      setToken(token)
+      setAuthed(!!token)
+    }
+  }, [token, setToken])
 
   const updateToken = useCallback(
     (token: string) => {
       setToken(token)
       Cookies.set('mikan_token', token || '', {
-        domain: `${document.domain}`,
-        secure: true,
+        domain,
+        secure: process.env.NODE_ENV !== 'development',
       })
     },
     [setToken],
@@ -64,7 +78,6 @@ const useAuth = (): Auth => {
     async (usernameOrEmail: string, password: string) => {
       try {
         const token = await mikanApi.auth(usernameOrEmail, password)
-        await fetchAccount()
         setAuthed(!!token)
         updateToken(token)
         return !!token
@@ -75,7 +88,7 @@ const useAuth = (): Auth => {
         return false
       }
     },
-    [setAuthed, setToken, fetchAccount, mikanApi.auth],
+    [setAuthed, setToken, mikanApi.auth],
   )
 
   const logout = useCallback(() => {

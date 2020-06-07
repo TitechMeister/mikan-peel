@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import { Route, useLocation, matchPath } from 'react-router-dom'
 import c from 'classnames'
 import TopBar from './components/nav/TopBar'
@@ -34,6 +34,10 @@ const App: React.FC = () => {
       ),
     [pathname],
   )
+
+  useEffect(() => {
+    auth.init()
+  }, [auth.init])
 
   return (
     <div className={styles.self}>
