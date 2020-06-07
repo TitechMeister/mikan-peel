@@ -1,0 +1,17 @@
+.self {
+  background-color: var(--primary);
+  width: 100vw;
+  min-height: 100vh;
+
+  :global(.container) {
+    padding: 20px;
+    max-width: 600px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-left: 5px;
+    color: var(--light);
+  }
+}

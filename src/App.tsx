@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react'
-import { BrowserRouter, Route, useLocation, matchPath } from 'react-router-dom'
-import { Container } from 'react-bootstrap'
+import { Route, useLocation, matchPath } from 'react-router-dom'
 import c from 'classnames'
 import TopBar from './components/common/TopBar'
 import HomeView from './views/HomeView'
 import LoginView from './views/LoginView'
 import RegisterView from './views/RegisterView'
+import RecoverView from './views/RecoverView'
 
 import styles from './App.scss'
 
-const fullScreenPaths = ['/login', '/register']
+const fullScreenPaths = ['/login', '/register', '/recover']
 
 const App: React.FC = () => {
   const { pathname } = useLocation()
@@ -32,6 +32,7 @@ const App: React.FC = () => {
         <Route exact={true} path='/' component={HomeView} />
         <Route exact={true} path='/login' component={LoginView} />
         <Route exact={true} path='/register' component={RegisterView} />
+        <Route exact={true} path='/recover' component={RecoverView} />
       </div>
     </div>
   )
