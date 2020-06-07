@@ -10,12 +10,23 @@ type Props = RouteProps & {
 const RedirectComponent: React.FC = () => <Redirect to='/login' />
 
 const PrivateRoute: React.FC<Props> = (props: Props) => {
-  const { auth, component, ...others } = props
+  const { auth, ...others } = props
 
   if (auth.authed) {
-    return <Route component={component} {...others} />
+    return <Route {...others} />
   } else {
-    return <Route component={RedirectComponent} {...others} />
+    const { path, exact, strict, sensitive } = others
+    return (
+      <Route
+        component={RedirectComponent}
+        {...{
+          path,
+          exact,
+          strict,
+          sensitive,
+        }}
+      />
+    )
   }
 }
 
