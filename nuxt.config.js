@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'spa',
+  ssr: false,
   // Headers of the page
   head: {
     title: 'mikan-peel',
@@ -23,7 +23,7 @@ module.exports = {
   // Build configuration
   build: {
     // Run ESLint on save
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -40,6 +40,31 @@ module.exports = {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/font-awesome',
-    '@nuxtjs/dotenv'
-  ]
+    '@nuxtjs/dotenv',
+    '@nuxtjs/pwa',
+  ],
+
+  pwa: {
+    icon: {
+      source: '/icon.png',
+      filename: 'icon.png',
+      sizes: [64, 120, 144, 152, 192, 384, 512],
+      targetDir: 'icons',
+      plugin: true,
+    },
+    manifest: {
+      name: 'mikan-peel',
+      lang: 'ja',
+      short_name: 'mikan-peel',
+      title: 'mikan-peel',
+      'og:title': 'mikan-peel',
+      description: 'Juicy interface for mikan',
+      'og:description': 'Juicy interface for mikan',
+      theme_color: '#f08300',
+      background_color: '#ffffff'
+    },
+    workbox: {
+      dev: true,
+    },
+  },
 }

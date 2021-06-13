@@ -19,6 +19,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/font-awesome": "^1.0.4",
+    "@nuxtjs/pwa": "^3.3.5",
     "axios": "^0.21.1",
     "bootstrap-vue": "^2.21.2",
     "chroma-js": "^2.1.1",
